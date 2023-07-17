@@ -2,15 +2,14 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-
+import Dashboard from "layouts/dashboard/dashboard";
 function App() {
-
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
-        carbon
+        <Dashboard />
       </div>
     </QueryClientProvider>
   );
