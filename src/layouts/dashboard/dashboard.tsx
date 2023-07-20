@@ -1,13 +1,12 @@
-import Header from "components/header/header"
 import Navbar from "../../components/navbar/navbar"
 
-const Dashboard: React.FC = () => {
-
+const DashboardLayout = ({ children }: React.HTMLAttributes<HTMLDivElement> ) => {
     return (
         <div className="dashboard">
             <Navbar />
+            {children}
         </div>
     )
 }
 
-export default Dashboard
+export default DashboardLayout
