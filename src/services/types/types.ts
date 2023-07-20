@@ -55,10 +55,10 @@ interface BuildingStrategy {
 
 // selectionSummary
 export interface ISelectionSummary {
-  data: EmissionsData;
+  data?: EmissionsData;
 }
 
-interface EmissionsData {
+export interface EmissionsData {
   currentEmissions: number;
   withAllStrategies: StrategyEstimates;
 }

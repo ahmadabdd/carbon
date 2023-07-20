@@ -1,0 +1,81 @@
+.header {
+  .actions {
+    padding: 16px 32px;
+    .back-button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      .text {
+        color: var(--blue-600);
+        font-weight: 600;
+      }
+    }
+    .page-title {
+      padding: 48px 0 28px 0;
+      display: flex;
+      justify-content: space-between;
+
+      .add-building-button {
+        cursor: pointer;
+        display: flex;
+        height: 40px;
+        padding: 12px 20px;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--slate-200);
+        background: #fff;
+        color: #334155;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .add-building-button:hover {
+        background-color: #f4f2f2;
+        transition: all 0.3s;
+      }
+    }
+  }
+  .tab-bar {
+    :where(.css-dev-only-do-not-override-1m62vyb).ant-tabs {
+      background-color: var(--slate-100);
+    }
+    .ant-tabs-nav-list {
+      padding-left: 32px;
+    }
+    .ant-tabs-content {
+      padding: 16px 32px 32px 32px;
+      background-color: var(--slate-100);
+    }
+    :where(.css-dev-only-do-not-override-1m62vyb).ant-tabs
+      > .ant-tabs-nav
+      .ant-tabs-nav-wrap,
+    :where(.css-dev-only-do-not-override-1m62vyb).ant-tabs
+      > div
+      > .ant-tabs-nav
+      .ant-tabs-nav-wrap {
+      background-color: var(--generic-white);
+    }
+    :where(.css-dev-only-do-not-override-1m62vyb).ant-tabs > .ant-tabs-nav,
+    :where(.css-dev-only-do-not-override-1m62vyb).ant-tabs
+      > div
+      > .ant-tabs-nav {
+      border-bottom: 1px solid var(--slate-200);
+    }
+    :where(.css-dev-only-do-not-override-1m62vyb).ant-tabs
+      .ant-tabs-tab.ant-tabs-tab-active
+      .ant-tabs-tab-btn {
+      color: #0f172a;
+    }
+    :where(.css-dev-only-do-not-override-1m62vyb).ant-tabs .ant-tabs-tab-btn {
+      outline: none;
+      transition: all 0.3s;
+      color: #64748b;
+    }
+    :where(.css-dev-only-do-not-override-1m62vyb).ant-tabs
+      .ant-tabs-tab-btn:hover {
+      color: #313843;
+    }
+  }
+}
