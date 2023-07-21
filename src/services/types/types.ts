@@ -18,6 +18,7 @@ export interface IStrategiesDetail {
 }
 
 export interface Strategy {
+  key: string;
   createdAt: string;
   name: string;
   emissions_reduction_tco2e: number;
@@ -25,6 +26,8 @@ export interface Strategy {
   project_cost: number;
   id: string;
   buildingId: string;
+  strategyName: string;
+  buildingName: string;
 }
 
 // Buildings

@@ -6,6 +6,63 @@ interface ScatterChartProps {
   data: Strategy[];
 }
 
+const tooltip = {
+  customContent: (title: any, items: any) => {
+    return (
+      <div style={{ padding: 8 }}>
+      {items.map((item: any) => (
+        <div
+          key={item.name}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            marginBottom: "5px",
+          }}
+        >
+          <span
+            style={{
+              backgroundColor: item.color,
+              height: "10px",
+              width: "10px",
+              borderRadius: "50%",
+            }}
+          ></span>
+          {item.name === "emissions_reduction_tco2e" ? "Emition reduction:" : ''}
+          {item.name === "project_cost" ? "Project cost:" : ''}
+          {item.name === "name" ? "Strategy:" : ''}
+          <p style={{ fontWeight: "bold", margin: 0 }}>
+            {item.value}
+          </p>
+        </div>
+      ))}
+        <div
+          key={items[0]?.color}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            marginBottom: "5px",
+          }}
+        >
+          <span
+            style={{
+              backgroundColor: items[0]?.color,
+              height: "10px",
+              width: "10px",
+              borderRadius: "50%",
+            }}
+          ></span>
+          Building:
+          <p style={{ fontWeight: "bold", margin: 0 }}>
+            {items[0]?.data?.buildingName}
+          </p>
+        </div>
+    </div>
+    )
+  }
+};
+
 const ScatterChart: React.FC<ScatterChartProps> = ({ data }) => {
   const config = {
     height: 480,
@@ -48,7 +105,7 @@ const ScatterChart: React.FC<ScatterChartProps> = ({ data }) => {
     },
   };
 
-  return <Scatter {...config as any} />;
+  return <Scatter {...config as any} tooltip={tooltip} />;
 };
 
 export default ScatterChart;

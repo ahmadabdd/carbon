@@ -21,32 +21,6 @@ export const useLogic = () => {
   const [chartData, setChartData] = useState<Strategy[]>();
   const [sortedInfo, setSortedInfo] = useState<SorterResult<DataType>>({});
 
-  const getStrategies = (data?: IStrategiesDetail[]) =>
-    data?.flatMap((item) => item.stratagy) || [];
-
-  // setting chart data
-  useEffect(() => {
-    setChartData(getStrategies(data?.data));
-  }, [data]);
-
-  // setting table data
-  useEffect(() => {
-    if (data?.data) {
-      const result = data?.data.flatMap((item, i) => {
-        return item.stratagy.map((strategy, j) => ({
-          key: `${i}-${j}`,
-          strategyName: strategy.name,
-          buildingName: `Building ${item.name}`, // Replace with actual building name if available
-          emissionsReductionTco2e: strategy.emissions_reduction_tco2e,
-          emissionsReductionPercent:
-            strategy.emissions_reduction_portfolio_percent,
-          projectCost: strategy.project_cost,
-        }));
-      });
-      setTableData(result);
-    }
-  }, [data]);
-
   const columns: ColumnsType<DataType> = [
     {
       title: "Strategy name",
@@ -97,13 +71,47 @@ export const useLogic = () => {
     },
   ];
 
+  const getStrategies = (data?: IStrategiesDetail[]) => {
+    return (
+      data?.flatMap((item) => {
+        const strategies = item.stratagy.map((strategy) => ({
+          ...strategy,
+          buildingName: item.name,
+        }));
+        return strategies;
+      }) || []
+    );
+  };
+
+  // setting chart data
+  useEffect(() => {
+    setChartData(getStrategies(data?.data));
+  }, [data]);
+
+  // setting table data
+  useEffect(() => {
+    if (data?.data) {
+      const result = data?.data.flatMap((item, i) => {
+        return item.stratagy.map((strategy, j) => ({
+          key: `${i}-${j}`,
+          strategyName: strategy.name,
+          buildingName: item.name,
+          emissionsReductionTco2e: strategy.emissions_reduction_tco2e,
+          emissionsReductionPercent:
+            strategy.emissions_reduction_portfolio_percent,
+          projectCost: strategy.project_cost,
+        }));
+      });
+      setTableData(result);
+    }
+  }, [data]);
+
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
       if (selectedRows.length) {
         const selectedStrategyNames = selectedRows.map(
           (item) => item.strategyName
         );
-
         setChartData(
           chartData?.filter((chartDataItem) =>
             selectedStrategyNames.includes(chartDataItem.name)
@@ -115,8 +123,14 @@ export const useLogic = () => {
     },
   };
 
-  const handleChange: TableProps<DataType>["onChange"] = (sorter) =>
+  const handleChange: TableProps<DataType>["onChange"] = (
+    pagination,
+    filters,
+    sorter,
+    extra
+  ) => {
     setSortedInfo(sorter as SorterResult<DataType>);
+  };
 
   return {
     chartData,
