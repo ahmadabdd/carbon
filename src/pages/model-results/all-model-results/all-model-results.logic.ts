@@ -18,6 +18,7 @@ type DataType = {
 export const useLogic = () => {
   const { data } = useGetStrategiesDetails({});
   const [tableData, setTableData] = useState<any[]>();
+  const [filteredTableData, setFilteredTableData] = useState<any[]>();
   const [chartData, setChartData] = useState<Strategy[]>();
   const [filteredChartData, setFilteredChartData] = useState<Strategy[]>();
   const [sortedInfo, setSortedInfo] = useState<SorterResult<DataType>>({});
@@ -105,6 +106,7 @@ export const useLogic = () => {
         }));
       });
       setTableData(result);
+      setFilteredTableData(result);
     }
   }, [data]);
 
@@ -134,6 +136,18 @@ export const useLogic = () => {
     setSortedInfo(sorter as SorterResult<DataType>);
   };
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value) {
+      setFilteredTableData((prev) =>
+        prev?.filter((item) =>
+          item.strategyName.toLowerCase().includes(e.target.value)
+        )
+      );
+    } else {
+      setFilteredTableData(tableData);
+    }
+  };
+
   return {
     tableData,
     columns,
@@ -141,5 +155,7 @@ export const useLogic = () => {
     handleChange,
     rowSelection,
     filteredChartData,
+    handleSearch,
+    filteredTableData,
   };
 };
