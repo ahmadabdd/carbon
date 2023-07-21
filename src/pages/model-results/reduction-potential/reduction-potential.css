@@ -14,4 +14,16 @@
     height: 42px;
     padding: 5px 11px;
   }
+
+  .ant-select {
+    width: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .reduction-potential-chart {
+    .ant-select {
+      width: 180px;
+    }
+  }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import './navbar.css';
 import { Bell } from 'react-feather';
 
-
 const Navbar: React.FC = () => {
   return (
     <nav className="navbar">
