@@ -6,7 +6,7 @@ import { MoreHorizontal } from "react-feather";
 import { useLogic } from "./all-model-results.logic";
 
 const AllModelResults: FC = () => {
-  const { chartData, tableData, columns, rowSelection, handleChange } =
+  const { tableData, columns, rowSelection, handleChange, filteredChartData } =
     useLogic();
 
   return (
@@ -17,7 +17,7 @@ const AllModelResults: FC = () => {
         </Typography.Title>
         <MoreHorizontal color="#94A3B8" cursor="pointer" />
       </div>
-      <ScatterChart data={chartData || []} key="scatter-chart" />
+      <ScatterChart data={filteredChartData || []} key="scatter-chart" />
       <Table
         dataSource={tableData}
         columns={columns}

@@ -19,6 +19,7 @@ export const useLogic = () => {
   const { data } = useGetStrategiesDetails({});
   const [tableData, setTableData] = useState<any[]>();
   const [chartData, setChartData] = useState<Strategy[]>();
+  const [filteredChartData, setFilteredChartData] = useState<Strategy[]>();
   const [sortedInfo, setSortedInfo] = useState<SorterResult<DataType>>({});
 
   const columns: ColumnsType<DataType> = [
@@ -86,6 +87,7 @@ export const useLogic = () => {
   // setting chart data
   useEffect(() => {
     setChartData(getStrategies(data?.data));
+    setFilteredChartData(getStrategies(data?.data));
   }, [data]);
 
   // setting table data
@@ -112,13 +114,13 @@ export const useLogic = () => {
         const selectedStrategyNames = selectedRows.map(
           (item) => item.strategyName
         );
-        setChartData(
+        setFilteredChartData(
           chartData?.filter((chartDataItem) =>
-            selectedStrategyNames.includes(chartDataItem.name)
+            selectedStrategyNames.some((item) => item === chartDataItem.name)
           ) || []
         );
       } else {
-        setChartData(getStrategies(data?.data));
+        setFilteredChartData(getStrategies(data?.data));
       }
     },
   };
@@ -133,11 +135,11 @@ export const useLogic = () => {
   };
 
   return {
-    chartData,
     tableData,
     columns,
     sortedInfo,
     handleChange,
     rowSelection,
+    filteredChartData,
   };
 };
