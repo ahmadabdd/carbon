@@ -1,4 +1,3 @@
-import React from "react";
 import { Box } from "@ant-design/plots";
 
 type BoxPlotChart = {
@@ -56,44 +55,59 @@ const BoxPlotChart = ({ data }: BoxPlotChart) => {
     },
   };
   const config = {
-    width: 400,
+    width: 300,
     height: 400,
     data: data,
     xField: "x",
     yField: "y",
     tooltip: tooltip,
-    textAlign: 'left',
-    xAxis: {
-        // label: {
-        //   textAlign: 'start', // Align x-axis labels to the left
-        // },
-        nice: true,
-        transpose: true,
+    textAlign: "left",
+    legend: {
+      position: "bottom",
+      title: {
+        text: "Emissions reduction (tCO2e)",
       },
-      yAxis: {
-        // label: {
-        //   textAlign: 'start', // Align y-axis labels to the left
-        // },
-        nice: true,
-        transpose: true,
+    },
+    yAxis: {
+      grid: {
+        align: "left",
+        line: {
+          style: {
+            stroke: '#F1F5F9',
+            lineWidth: 1,
+            lineDash: [],
+            strokeOpacity: 1,
+            shadowColor: "black",
+            shadowBlur: 0,
+            cursor: "pointer",
+          },
+        },
       },
+      verticalFactor: 14,
+        label: {
+          style: {
+            textAlign: "start",
+            fontSize: 14,
+            fill: "black",
+          },
+        },
+    },
     boxStyle: {
+      lineJoin: "round",
+      lineCap: "round",
       stroke: "#2563EB",
       fill: "#2563EB",
       fillOpacity: 0.2,
-    //   point: {
-    //     size: 5,
-    //     shape: "diamond",
-    //     style: {
-    //       fill: "red",
-    //       stroke: "#2593fc",
-    //       lineWidth: 2,
-    //     },
-    //   },
+      lineHeight: 20,
+      height: 40,
     },
     animation: true,
   };
-  return <Box {...config} />;
+  return (
+    <Box
+      {...(config as any)}
+    />
+  );
 };
 
 export default BoxPlotChart;
