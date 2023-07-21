@@ -16,31 +16,33 @@ const ModelResults: React.FC = () => {
   } = useLogic();
   return (
     <div className="model-results">
-        <div className="charts-card">
+      <div className="charts-card">
         <div className="left-chart">
-            <ReductionPotential
+          <ReductionPotential
             isLoadingBuildings={isLoadingBuildings}
             options={[
-                { label: "All buildings", value: "All buildings" },
-                ...(buildings?.data.map((item) => ({
+              { label: "All buildings", value: "All buildings" },
+              ...(buildings?.data.map((item) => ({
                 label: capitalizeFirstLetter(item.name),
                 value: capitalizeFirstLetter(item.name),
-                })) ?? []),
+              })) ?? []),
             ]}
-            data={reductionPotentialData?.data[0].stratagies.map((item) => ({ 
+            data={
+              reductionPotentialData?.data[0].stratagies.map((item) => ({
                 x: CalculateBoxPlotStatistics(item.x),
-                y: item.name
-            })) || []}
+                y: item.name,
+              })) || []
+            }
             setBuilding={setBuilding}
-            />
+          />
         </div>
         <div className="right-chart">
-            <SelectionSummary data={selectionSummary?.data} />
+          <SelectionSummary data={selectionSummary?.data} />
         </div>
-        </div>
-        <div className="all-model-results-card">
-            <AllModelResults />
-        </div>
+      </div>
+      <div className="all-model-results-card">
+        <AllModelResults />
+      </div>
     </div>
   );
 };

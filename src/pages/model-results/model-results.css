@@ -16,10 +16,10 @@
       flex-direction: column;
       flex: 2;
       border-right: 1px solid #e2e8f0;
-      max-width: 920px;
 
       .chart-header {
         display: flex;
+        width: 100%;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 30px;
@@ -49,6 +49,45 @@
     border-radius: 8px;
     border: 1px solid var(--slate-200, #e2e8f0);
     background: var(--generic-white, #fff);
-    height: 600px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .model-results {
+    .charts-card {
+      .left-chart {
+        width: 50%;
+      }
+      .right-chart {
+        width: 50%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 950px) {
+  .model-results {
+    .charts-card {
+      flex-direction: column;
+      flex-wrap: wrap;
+      .left-chart {
+        border: none;
+        width: 93%;
+      }
+      .right-chart {
+        width: 93%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 550px) {
+  .model-results {
+    .charts-card {
+      .left-chart {
+        width: 86%;
+      }
+      .right-chart {
+        width: 86%;
+      }
+    }
   }
 }

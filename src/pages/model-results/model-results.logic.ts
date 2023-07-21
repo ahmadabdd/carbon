@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   useGetBuildings,
   useGetReductionPotential,
@@ -19,10 +19,6 @@ export const useLogic = () => {
 
   const capitalizeFirstLetter = (str: string) =>
     str.charAt(0).toUpperCase() + str.slice(1);
-
-  useEffect(() => {
-    console.log(selectionSummary?.data?.currentEmissions);
-  }, [selectionSummary]);
 
   return {
     buildings,
