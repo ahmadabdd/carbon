@@ -1,0 +1,12 @@
+.all-model-results {
+  margin: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

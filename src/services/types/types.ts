@@ -10,14 +10,14 @@ export interface IStrategiesDetails {
   data: IStrategiesDetail[];
 }
 
-interface IStrategiesDetail {
+export interface IStrategiesDetail {
   createdAt: string;
   name: string;
   id: string;
   stratagy: Strategy[];
 }
 
-interface Strategy {
+export interface Strategy {
   createdAt: string;
   name: string;
   emissions_reduction_tco2e: number;
