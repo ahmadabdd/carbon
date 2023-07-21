@@ -14,18 +14,21 @@ const BoxPlotChart = ({ data }: BoxPlotChart) => {
     customContent: (title: any, items: any) => {
       const data = items[0]?.data;
       if (!data) return null;
-
+  
       const xValues = ["Min", "Q1", "Median", "Q3", "Max"];
+      const reversedXValues = xValues.slice().reverse();
+  
       const tooltipContent = (
         <>
           <h3 style={{ marginTop: 16 }}>{data.y}</h3>
           <ul style={{ paddingLeft: 0 }}>
-            {xValues.map((xValue: string, index: number) => {
+            {reversedXValues.map((xValue: string, index: number) => {
+              const reversedIndex = xValues.length - index - 1; // Calculate the corresponding index in the original array
               return (
                 <li
                   key={xValue}
                   className="g2-tooltip-list-item"
-                  data-index={index}
+                  data-index={reversedIndex}
                   style={{
                     marginBottom: 4,
                     display: "flex",
@@ -41,7 +44,7 @@ const BoxPlotChart = ({ data }: BoxPlotChart) => {
                     }}
                   >
                     <div style={{ color: items[0].color, fontSize: "16px" }}>
-                      {data.x[index]}
+                      {data.x[reversedIndex]} {/* Use the reversed index */}
                     </div>
                     <div>{xValue}</div>
                   </div>
@@ -68,30 +71,6 @@ const BoxPlotChart = ({ data }: BoxPlotChart) => {
         text: "Emissions reduction (tCO2e)",
       },
     },
-    yAxis: {
-      grid: {
-        align: "left",
-        line: {
-          style: {
-            stroke: '#F1F5F9',
-            lineWidth: 1,
-            lineDash: [],
-            strokeOpacity: 1,
-            shadowColor: "black",
-            shadowBlur: 0,
-            cursor: "pointer",
-          },
-        },
-      },
-      verticalFactor: 14,
-        label: {
-          style: {
-            textAlign: "start",
-            fontSize: 14,
-            fill: "black",
-          },
-        },
-    },
     boxStyle: {
       lineJoin: "round",
       lineCap: "round",
@@ -106,6 +85,44 @@ const BoxPlotChart = ({ data }: BoxPlotChart) => {
   return (
     <Box
       {...(config as any)}
+      xAxis={{
+        tickCount: 15,
+        grid: {
+          line: {
+            style: {
+              stroke: '#F1F5F9',
+              lineWidth: 1,
+              lineDash: [],
+              strokeOpacity: 1,
+              shadowColor: "black",
+              shadowBlur: 0,
+              cursor: "pointer",
+              lineCap: 'round',
+            },
+          },
+        },
+        position: 'bottom'
+      }}
+      yAxis={{
+        grid: {
+          alignTick: false,
+          closed: false,
+          align: "left",
+          line: {
+            style: {
+              stroke: 'white',
+            },
+          },
+        },
+        verticalFactor: 18,
+          label: {
+            style: {
+              textAlign: "start",
+              fontSize: 14,
+              fill: "black",
+            },
+          },
+      }}
     />
   );
 };

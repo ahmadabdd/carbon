@@ -46,7 +46,7 @@
       padding-left: 32px;
     }
     .ant-tabs-content {
-      padding: 16px 32px 32px 32px;
+      padding: 12px 32px 32px 32px;
       background-color: var(--slate-100);
     }
     :where(.css-dev-only-do-not-override-1m62vyb).ant-tabs

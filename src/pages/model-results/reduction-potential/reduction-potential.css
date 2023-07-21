@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   :where(.css-dev-only-do-not-override-1m62vyb).ant-select-single:not(
@@ -17,6 +17,10 @@
 
   .ant-select {
     width: 350px;
+  }
+
+  .chart {
+    margin-top: 20px;
   }
 }
 
